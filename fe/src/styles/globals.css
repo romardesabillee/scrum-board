@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn{
+    @apply w-full px-[2px] py-[5px] font-medium text-white hover:opacity-70 transition-opacity duration-300 text-sm;
+}
+.btn.btn-primary{
+    @apply bg-blue-500 rounded-lg;
+}
+.btn.btn-secondary{
+    @apply bg-gray-100 rounded-lg text-blue-500 border border-blue-500;
+}
+
+.input{
+    @apply border border-gray-400 rounded-md shadow-sm px-3 py-1 w-full outline-none text-sm;
+}
+
+.label{
+    @apply font-mono font-bold;
+}
