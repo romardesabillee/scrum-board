@@ -12,6 +12,15 @@ const useBoardStore = create((set) => ({
         }).catch((error) => {
             set({ isLoading: false });
         });
+    },
+    createBoard: (data) => {
+        set({ isLoading: true });
+        axiosInstance.post('/board/action/', data)
+        .then((response) => {
+            set({ board: response.data, isLoading: false });
+        }).catch((error) => {
+            set({ isLoading: false });
+        });
     }
 }));
 export default useBoardStore;

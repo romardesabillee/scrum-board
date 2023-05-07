@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from 'next/router'
 
 export default function Home() {
-    const { login: loginUser, token } = useUserStore();
+    const { login: loginUser } = useUserStore();
     const router = useRouter();
 
     const [state, setState] = useState({
@@ -17,7 +17,6 @@ export default function Home() {
 
     function login(){
         loginUser(state.email, state.password);
-        router.push('/board')
     }
 
     return (

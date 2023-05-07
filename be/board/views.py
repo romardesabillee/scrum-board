@@ -14,7 +14,10 @@ def board_details(request, **kwargs):
     if 'pk' in kwargs:
         board = BoardSerializer(Board.objects.get(pk=kwargs['pk']), many=False).data
     else:
-        board = BoardSerializer(Board.objects.all(), many=True).data
+        board = BoardSerializer(
+            Board.objects.filter(user__email=request.user.email), 
+            many=True
+        ).data
 
     return Response(board)
 
@@ -26,8 +29,10 @@ def board_actions(request):
         # board = Board.objects.create(
         #     title=request.data['title'],
         #     description=request.data['description'],
-        # )
-        serializer = BoardSerializer(data=request.data) 
+        serializer = BoardSerializer(
+            data=request.data, 
+            context={'request': request}
+        ) 
         if serializer.is_valid(raise_exception=True):
             serializer.save()
 
